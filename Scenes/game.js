@@ -1470,5 +1470,5 @@ function loadGame() {
   }
 }
 
+setInterval(saveGame, 50);
 window.addEventListener("load", loadGame);
-setInterval(saveGame, 50); // Saves every 5 seconds
