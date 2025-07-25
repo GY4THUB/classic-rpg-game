@@ -218,7 +218,7 @@ userExp += 10;
 userExp = Math.ceil(userExp * 1.25);
 while(userExp >= userMaxExp){ // in case EXP overflows, handle multiple level-ups
   userExp -= userMaxExp;
-  currentLvl += 100;
+  currentLvl += 1;
   userMaxExp = Math.ceil(userMaxExp * 1.25);
 
   // LEVEL UP BONUS:
