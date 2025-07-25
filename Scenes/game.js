@@ -1470,5 +1470,12 @@ function loadGame() {
   }
 }
 
+const manualSaveBtn = document.getElementById("manualSave");
+
+manualSaveBtn.addEventListener("click", function () {
+  saveGame(); // call the function you already created
+  alert("Game saved!");
+});
+
 window.addEventListener("load", loadGame());
 setInterval(saveGame, 50); // Saves every 5 seconds
