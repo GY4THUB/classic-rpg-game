@@ -1,0 +1,16 @@
+{
+  "name": "Classic RPG",
+  "short_name": "CRPG",
+  "start_url": "main.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#252525",
+  "theme_color": "#252525",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
