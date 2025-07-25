@@ -1,6 +1,5 @@
 <a href="Scenes/game.html" id="homepage">Start Game</a>
 
-<script>
 const homepage = document.getElementById("homepage");
 
 homepage.addEventListener('click', function (e) {
@@ -96,4 +95,3 @@ homepage.addEventListener('click', function (e) {
   // Then navigate
   window.location.href = "Scenes/game.html";
 });
-</script>
