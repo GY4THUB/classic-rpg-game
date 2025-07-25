@@ -218,7 +218,7 @@ userExp += 10;
 userExp = Math.ceil(userExp * 1.25);
 while(userExp >= userMaxExp){ // in case EXP overflows, handle multiple level-ups
   userExp -= userMaxExp;
-  currentLvl += 1;
+  currentLvl += 100;
   userMaxExp = Math.ceil(userMaxExp * 1.25);
 
   // LEVEL UP BONUS:
@@ -1197,151 +1197,10 @@ sound.play();
 });
 
 
-
-window.onload = function () {
-  const savedData = localStorage.getItem("idleGameSave");
-
-  if (savedData) {
-    loadGame(); // ✅ Call the loadGame function
-  } else {
-    console.log("No saved data found.");
-  }
-};
-
-function loadGame() {
-  const savedData = JSON.parse(localStorage.getItem("idleGameSave"));
-  if (!savedData) return;
-
-  // Restore Player Data
-  mny = savedData.mny;
-  dmg = savedData.dmg;
-  moneypersec = savedData.moneypersec;
-  priceofDMG = savedData.priceofDMG;
-  incomePrice = savedData.incomePrice;
-  hp = savedData.hp;
-  maxhp = savedData.maxhp;
-  priceofHP = savedData.priceofHP;
-  userExp = savedData.userExp;
-  userMaxExp = savedData.userMaxExp;
-  currentLvl = savedData.currentLvl;
-  wins = savedData.wins;
-  losses = savedData.losses;
-
-  // Restore Enemies
-  normalLevel = savedData.normalLevel;
-  normalmaxhp = savedData.normalmaxhp;
-  normalDamage = savedData.normalDamage;
-
-  eliteLevel = savedData.eliteLevel;
-  elitemaxhp = savedData.elitemaxhp;
-  eliteDamage = savedData.eliteDamage;
-
-  soldierLevel = savedData.soldierLevel;
-  soldiermaxhp = savedData.soldiermaxhp;
-  soldierDamage = savedData.soldierDamage;
-
-  veteranLevel = savedData.veteranLevel;
-  veteranmaxhp = savedData.veteranmaxhp;
-  veteranDamage = savedData.veteranDamage;
-
-  masterLevel = savedData.masterLevel;
-  mastermaxhp = savedData.mastermaxhp;
-  masterDamage = savedData.masterDamage;
-
-  mastermindLevel = savedData.mastermindLevel;
-  mastermindmaxhp = savedData.mastermindmaxhp;
-  mastermindDamage = savedData.mastermindDamage;
-
-  thecauseLevel = savedData.thecauseLevel;
-  thecausemaxhp = savedData.thecausemaxhp;
-  thecauseDamage = savedData.thecauseDamage;
-
-  // Bosses
-  princeLevel = savedData.princeLevel;
-  princeHealth = savedData.princeHealth;
-  princemaxhp = savedData.princemaxhp;
-  princeDamage = savedData.princeDamage;
-
-  queenLevel = savedData.queenLevel;
-  queenHealth = savedData.queenHealth;
-  queenmaxhp = savedData.queenmaxhp;
-  queenDamage = savedData.queenDamage;
-
-  kingLevel = savedData.kingLevel;
-  kingHealth = savedData.kingHealth;
-  kingmaxhp = savedData.kingmaxhp;
-  kingDamage = savedData.kingDamage;
-
-  memekingLevel = savedData.memekingLevel;
-  memekingHealth = savedData.memekingHealth;
-  memekingmaxhp = savedData.memekingmaxhp;
-  memekingDamage = savedData.memekingDamage;
-
-  gigachadLevel = savedData.gigachadLevel;
-  gigachadHealth = savedData.gigachadHealth;
-  gigachadmaxhp = savedData.gigachadmaxhp;
-  gigachadDamage = savedData.gigachadDamage;
-
-  brocodeLevel = savedData.brocodeLevel;
-  brocodeHealth = savedData.brocodeHealth;
-  brocodemaxhp = savedData.brocodemaxhp;
-  brocodeDamage = savedData.brocodeDamage;
-
-  creatorLevel = savedData.creatorLevel;
-  creatorHealth = savedData.creatorHealth;
-  creatormaxhp = savedData.creatormaxhp;
-  creatorDamage = savedData.creatorDamage;
-
-  // Update UI (sample only — make sure elements exist!)
-  money.textContent = Math.ceil(mny);
-  priceDMG.textContent = priceofDMG;
-  priceIncome.textContent = incomePrice;
-  moneypersecond.textContent = moneypersec;
-  damage.textContent = dmg;
-  health.textContent = Math.ceil(hp);
-  priceHP.textContent = priceofHP;
-  exp.textContent = userExp;
-  maxExp.textContent = userMaxExp;
-  lvlstatus.textContent = currentLvl;
-  won.textContent = wins;
-  lose.textContent = losses;
-
-  // Update enemy stats to UI
-  normallvl.textContent = normalLevel;
-  normalhp.textContent = normalmaxhp;
-
-  // Update bosses to UI
-  princelvl.textContent = princeLevel;
-  princehp.textContent = Math.ceil(princeHealth);
-  princedmg.textContent = princeDamage;
-
-  queenlvl.textContent = queenLevel;
-  queenhp.textContent = Math.ceil(queenHealth);
-  queendmg.textContent = queenDamage;
-
-  kinglvl.textContent = kingLevel;
-  kinghp.textContent = Math.ceil(kingHealth);
-  kingdmg.textContent = kingDamage;
-
-  memekinglvl.textContent = memekingLevel;
-  memekinghp.textContent = Math.ceil(memekingHealth);
-  memekingdmg.textContent = memekingDamage;
-
-  gigachadlvl.textContent = gigachadLevel;
-  gigachadhp.textContent = Math.ceil(gigachadHealth);
-  gigachaddmg.textContent = gigachadDamage;
-
-  brocodelvl.textContent = brocodeLevel;
-  brocodehp.textContent = Math.ceil(brocodeHealth);
-  brocodedmg.textContent = brocodeDamage;
-
-  creatorlvl.textContent = creatorLevel;
-  creatorhp.textContent = Math.ceil(creatorHealth);
-  creatordmg.textContent = creatorDamage;
-}
-
+// SAVE FUNCTION
 function saveGame() {
   const gameData = {
+    // Player
     mny,
     dmg,
     moneypersec,
@@ -1360,57 +1219,256 @@ function saveGame() {
     normalLevel,
     normalmaxhp,
     normalDamage,
+    
     eliteLevel,
     elitemaxhp,
     eliteDamage,
+    
     soldierLevel,
     soldiermaxhp,
     soldierDamage,
+
     veteranLevel,
     veteranmaxhp,
     veteranDamage,
+
     masterLevel,
     mastermaxhp,
     masterDamage,
+
     mastermindLevel,
     mastermindmaxhp,
     mastermindDamage,
+
     thecauseLevel,
     thecausemaxhp,
     thecauseDamage,
+    
+    // Boss variables
+princeLevel,
+princeHealth,
+princemaxhp,
+princeDamage,
 
-    // Bosses
-    princeLevel,
-    princeHealth,
-    princemaxhp,
-    princeDamage,
-    queenLevel,
-    queenHealth,
-    queenmaxhp,
-    queenDamage,
-    kingLevel,
-    kingHealth,
-    kingmaxhp,
-    kingDamage,
-    memekingLevel,
-    memekingHealth,
-    memekingmaxhp,
-    memekingDamage,
-    gigachadLevel,
-    gigachadHealth,
-    gigachadmaxhp,
-    gigachadDamage,
-    brocodeLevel,
-    brocodeHealth,
-    brocodemaxhp,
-    brocodeDamage,
-    creatorLevel,
-    creatorHealth,
-    creatormaxhp,
-    creatorDamage
+queenLevel,
+queenHealth,
+queenmaxhp,
+queenDamage,
+
+kingLevel,
+kingHealth,
+kingmaxhp,
+kingDamage,
+
+memekingLevel,
+memekingHealth,
+memekingmaxhp,
+memekingDamage,
+
+gigachadLevel,
+gigachadHealth,
+gigachadmaxhp,
+gigachadDamage,
+
+brocodeLevel,
+brocodeHealth,
+brocodemaxhp,
+brocodeDamage,
+
+creatorLevel,
+creatorHealth,
+creatormaxhp,
+creatorDamage
   };
 
   localStorage.setItem("idleGameSave", JSON.stringify(gameData));
 }
 
-setInterval(saveGame, 1000); // Saves every 5 seconds
+// LOAD FUNCTION
+function loadGame() {
+  const savedData = JSON.parse(localStorage.getItem("idleGameSave"));
+  if (savedData) {
+    // Player
+    mny = savedData.mny;
+    dmg = savedData.dmg;
+    moneypersec = savedData.moneypersec;
+    priceofDMG = savedData.priceofDMG;
+    incomePrice = savedData.incomePrice;
+    hp = savedData.hp;
+    maxhp = savedData.maxhp;
+    priceofHP = savedData.priceofHP;
+    userExp = savedData.userExp;
+    userMaxExp = savedData.userMaxExp;
+    currentLvl = savedData.currentLvl;
+    wins = savedData.wins;
+    losses = savedData.losses;
+
+    // Enemies
+    normalLevel = savedData.normalLevel;
+    normalmaxhp = savedData.normalmaxhp;
+    normalDamage = savedData.normalDamage;
+
+    eliteLevel = savedData.eliteLevel;
+    elitemaxhp = savedData.elitemaxhp;
+    eliteDamage = savedData.eliteDamage;
+
+    soldierLevel = savedData.soldierLevel;
+    soldiermaxhp = savedData.soldiermaxhp;
+    soldierDamage = savedData.soldierDamage;
+
+    veteranLevel = savedData.veteranLevel;
+    veteranmaxhp = savedData.veteranmaxhp;
+    veteranDamage = savedData.veteranDamage;
+
+    masterLevel = savedData.masterLevel;
+    mastermaxhp = savedData.mastermaxhp;
+    masterDamage = savedData.masterDamage;
+
+    mastermindLevel = savedData.mastermindLevel;
+    mastermindmaxhp = savedData.mastermindmaxhp;
+    mastermindDamage = savedData.mastermindDamage;
+
+    thecauseLevel = savedData.thecauseLevel;
+    thecausemaxhp = savedData.thecausemaxhp;
+    thecauseDamage = savedData.thecauseDamage;
+    
+    // Bosses
+princeLevel = savedData.princeLevel;
+princeHealth = savedData.princeHealth;
+princemaxhp = savedData.princemaxhp;
+princeDamage = savedData.princeDamage;
+
+queenLevel = savedData.queenLevel;
+queenHealth = savedData.queenHealth;
+queenmaxhp = savedData.queenmaxhp;
+queenDamage = savedData.queenDamage;
+
+kingLevel = savedData.kingLevel;
+kingHealth = savedData.kingHealth;
+kingmaxhp = savedData.kingmaxhp;
+kingDamage = savedData.kingDamage;
+
+memekingLevel = savedData.memekingLevel;
+memekingHealth = savedData.memekingHealth;
+memekingmaxhp = savedData.memekingmaxhp;
+memekingDamage = savedData.memekingDamage;
+
+gigachadLevel = savedData.gigachadLevel;
+gigachadHealth = savedData.gigachadHealth;
+gigachadmaxhp = savedData.gigachadmaxhp;
+gigachadDamage = savedData.gigachadDamage;
+
+brocodeLevel = savedData.brocodeLevel;
+brocodeHealth = savedData.brocodeHealth;
+brocodemaxhp = savedData.brocodemaxhp;
+brocodeDamage = savedData.brocodeDamage;
+
+creatorLevel = savedData.creatorLevel;
+creatorHealth = savedData.creatorHealth;
+creatormaxhp = savedData.creatormaxhp;
+creatorDamage = savedData.creatorDamage;
+
+    // UI Updates
+    money.textContent = Math.ceil(mny);
+    priceDMG.textContent = priceofDMG;
+    priceIncome.textContent = incomePrice;
+    moneypersecond.textContent = moneypersec;
+    damage.textContent = dmg;
+    health.textContent = Math.ceil(hp);
+    priceHP.textContent = priceofHP;
+    exp.textContent = userExp;
+    maxExp.textContent = userMaxExp;
+    lvlstatus.textContent = currentLvl;
+    won.textContent = wins;
+    lose.textContent = losses;
+
+    normallvl.textContent = normalLevel;
+    normalhp.textContent = normalmaxhp;
+
+    elitelvl.textContent = eliteLevel;
+    elitehp.textContent = elitemaxhp;
+    elitedmg.textContent = eliteDamage;
+
+    soldierlvl.textContent = soldierLevel;
+    soldierhp.textContent = soldiermaxhp;
+    soldierdmg.textContent = soldierDamage;
+
+    veteranlvl.textContent = veteranLevel;
+    veteranhp.textContent = veteranmaxhp;
+    veterandmg.textContent = veteranDamage;
+
+    masterlvl.textContent = masterLevel;
+    masterhp.textContent = mastermaxhp;
+    masterdmg.textContent = masterDamage;
+
+    mastermindlvl.textContent = mastermindLevel;
+    mastermindhp.textContent = mastermindmaxhp;
+    masterminddmg.textContent = mastermindDamage;
+
+    thecauselvl.textContent = thecauseLevel;
+    thecausehp.textContent = thecausemaxhp;
+    thecausedmg.textContent = thecauseDamage;
+    
+    // Update boss UI
+function loadGame() {
+  const savedData = JSON.parse(localStorage.getItem("idleGameSave"));
+  if (savedData) {
+    // Restore values
+    mny = savedData.mny;
+    dmg = savedData.dmg;
+    // ... your other user-related values
+
+    // Restore boss data
+    princeLevel = savedData.princeLevel;
+    princeHealth = savedData.princeHealth;
+    princemaxhp = savedData.princemaxhp;
+    princeDamage = savedData.princeDamage;
+
+    queenLevel = savedData.queenLevel;
+    queenHealth = savedData.queenHealth;
+    queenmaxhp = savedData.queenmaxhp;
+    queenDamage = savedData.queenDamage;
+
+    // ... repeat for king, memeking, etc.
+
+    // Update DOM/UI
+    money.textContent = Math.ceil(mny);
+    damage.textContent = dmg;
+    moneypersecond.textContent = moneypersec;
+    // ... your other stat displays
+
+    // 🔽 Place this part BELOW after restoring boss variables
+    princelvl.textContent = princeLevel;
+    princehp.textContent = Math.ceil(princeHealth);
+    princedmg.textContent = princeDamage;
+
+    queenlvl.textContent = queenLevel;
+    queenhp.textContent = Math.ceil(queenHealth);
+    queendmg.textContent = queenDamage;
+
+    kinglvl.textContent = kingLevel;
+    kinghp.textContent = Math.ceil(kingHealth);
+    kingdmg.textContent = kingDamage;
+
+    memekinglvl.textContent = memekingLevel;
+    memekinghp.textContent = Math.ceil(memekingHealth);
+    memekingdmg.textContent = memekingDamage;
+
+    gigachadlvl.textContent = gigachadLevel;
+    gigachadhp.textContent = Math.ceil(gigachadHealth);
+    gigachaddmg.textContent = gigachadDamage;
+
+    brocodelvl.textContent = brocodeLevel;
+    brocodehp.textContent = Math.ceil(brocodeHealth);
+    brocodedmg.textContent = brocodeDamage;
+
+    creatorlvl.textContent = creatorLevel;
+    creatorhp.textContent = Math.ceil(creatorHealth);
+    creatordmg.textContent = creatorDamage;
+  }
+}
+  }
+}
+
+window.addEventListener("load", loadGame());
+setInterval(saveGame, 50); // Saves every 5 seconds
