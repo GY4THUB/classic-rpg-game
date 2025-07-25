@@ -1470,5 +1470,5 @@ function loadGame() {
   }
 }
 
-setInterval(saveGame, 50);
+setInterval(saveGame, 500);
 window.addEventListener("load", loadGame);
